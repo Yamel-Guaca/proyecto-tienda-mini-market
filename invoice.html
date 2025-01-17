@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: html;
+            --s: 120px;
+            --c1: #c1bebb;
+            --c2: #9f9897;
+            --c3: #ae9e85;
+            background: conic-gradient(from 150deg at 50% 33%, #0000, var(--c1) .5deg 60deg, #0000 60.5deg) calc(var(--s) / 2) calc(var(--s) / sqrt(2)), conic-gradient(from -30deg at 50% 66%, #0000, var(--c2) .5deg 60deg, var(--c3) 60.5deg);
+            background-size: var(--s) calc(.5 * var(--s) / tan(30deg));
+        }
+        
+        .invoice {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #c1c7c6;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #0a6d30;
+            position: relative;
+        }
+        
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .invoice-header h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+        }
+        
+        .invoice-header img {
+            width: 80px;
+            height: auto;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #ea590b;
+            font-size: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th,
+        table td {
+            border: 1px solid #29a105;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        table th {
+            background-color: #aeeccf;
+            color: #333;
+        }
+        
+        table td {
+            color: #0c0101;
+        }
+        
+        .total {
+            text-align: right;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #180202;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #788ba0;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .qr-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .qr-container img {
+            width: 240px;
+            height: 240px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #180202;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice">
+        <!-- Encabezado con logo -->
+        <div class="invoice-header">
+            <h1>Factura de Compra</h1>
+            <img src="./images/cover.png" alt="Logo AGROAPP-Minimarket">
+        </div>
+
+        <h2>AGROAPP-Minimarket</h2>
+        <p><strong>Cliente:</strong> <span id="client-name">Usuario</span></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Producto</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-body"></tbody>
+        </table>
+        <p class="total"><strong>Total a Pagar:</strong> $<span id="invoice-total">0</span></p>
+
+        <div class="qr-container">
+            <h3>Código QR</h3>
+            <h4>🌱🛒 Bancolombia 🌱🛒🌱🛒🌱🛒 Nequi🌱🛒
+            </h4>
+            <img src="./images/codigo QR.jpeg" alt="Código QR para Pago">
+            <img src="./images/QR nequi.png" alt="Código QR para Pago">
+        </div>
+
+        <!-- Botones -->
+        <a href="https://www.mercadopago.com" class="btn" target="_blank">Unirme MercadoPago</a>
+        <script src="https://www.mercadopago.com.co/integrations/v1/web-payment-checkout.js" data-preference-id="1223558115-2dd88258-0620-4109-a764-6041ca416c6a" data-source="button">
+        </script>
+        <a href="https://www.nequi.com" class="btn" target="_blank">Unirme a Nequi</a>
+        <button id="download-invoice" class="btn">Descargar Factura</button>
+        <button id="print-invoice" class="btn">Imprimir Factura</button>
+        <a id="whatsapp-link" class="btn" target="_blank">confirmar al WhatsApp</a>
+        <a href="homepage.html" class="btn">Seguir Comprando</a>
+        <button id="close-session" class="btn">Cerrar Sesión</button>
+    </div>
+
+    <div class="footer">
+        <p>Gracias por tu compra. Visítanos de nuevo en AGROAPP-Minimarket.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const clientName = document.getElementById("client-name");
+            const invoiceBody = document.getElementById("invoice-body");
+            const invoiceTotal = document.getElementById("invoice-total");
+            const whatsappLink = document.getElementById("whatsapp-link");
+
+            // Obtener datos del usuario y carrito
+            const user = JSON.parse(localStorage.getItem("user")) || {
+                name: "Usuario"
+            };
+            const cart = JSON.parse(localStorage.getItem("cartProducts")) || [];
+
+            // Formatear número con separador de miles
+            const formatPrice = (price) => {
+                return price.toLocaleString("es-CO");
+            };
+
+            // Mostrar el nombre del cliente
+            clientName.textContent = user.name;
+
+            // Renderizar productos en la tabla
+            let total = 0;
+            cart.forEach(item => {
+                const subtotal = item.quantity * item.price;
+                total += subtotal;
+
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.quantity}</td>
+                    <td>${item.title}</td>
+                    <td>$${formatPrice(item.price)}</td>
+                    <td>$${formatPrice(subtotal)}</td>
+                `;
+                invoiceBody.appendChild(row);
+            });
+
+            // Mostrar el total
+            invoiceTotal.textContent = formatPrice(total);
+
+            // Configurar enlace de WhatsApp
+            const whatsappMessage = `Gracias ${user.name}. Aquí está la confirmación de tu compra: *ENVIA EL PDF DE TU PAGO AL +57 3138099989* 
+` +
+                cart.map(item => `${item.quantity} x ${item.title} - $${formatPrice(item.price)} c/u`).join("\n") +
+                `\nTotal: $${formatPrice(total)}`;
+            whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
+
+            // Descargar factura en PDF
+            document.getElementById("download-invoice").addEventListener("click", () => {
+                const {
+                    jsPDF
+                } = window.jspdf;
+                const pdf = new jsPDF();
+
+                pdf.text("Factura de Compra", 10, 10);
+                pdf.text(`Cliente: ${user.name}`, 10, 20);
+
+                let y = 30;
+                cart.forEach(item => {
+                    pdf.text(`${item.quantity} x ${item.title} - $${formatPrice(item.price)} = $${formatPrice(item.quantity * item.price)}`, 10, y);
+                    y += 10;
+                });
+
+                pdf.text(`Total: $${formatPrice(total)}`, 10, y + 10);
+                pdf.save("factura.pdf");
+            });
+
+            // Imprimir factura
+            document.getElementById("print-invoice").addEventListener("click", () => {
+                window.print();
+            });
+
+            // Cerrar sesión
+            document.getElementById("close-session").addEventListener("click", () => {
+                localStorage.removeItem("user");
+                localStorage.removeItem("cartProducts");
+                alert("Sesión cerrada. Redirigiendo a la página de inicio.");
+                window.location.href = "index.html";
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pago</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/media-queries.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo">Minimarket</a>
+            <input type="checkbox" id="menu">
+            <label for="menu"><img src="images/menu.png" class="menu-icono" alt=""></label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="homepage.html">Inicio</a></li>
+                    <li><a href="aseo-index.html">Aseo</a></li>
+                    <li><a href="empaques.html">Empaques</a></li>
+                    <li><a href="mascotas-index.html">Mascotas</a></li>
+                    <li><a href="mercado-index.html">Mercado</a></li>
+                    <li><a href="panaderia-index.html">Panaderia</a></li>
+                    <li><a href="papeleria-index.html">Papelería</a></li>
+                    <button id="logout">Cerrar Sesión</button>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Factura</h1>
+        <div class="invoice">
+            <h2>Resumen de la Compra</h2>
+            <div id="invoice-details">
+                <!-- Aquí se mostrará la factura detallada -->
+            </div>
+            <div class="invoice-total">
+                <h3>Total a Pagar: <span id="total-pagar"></span></h3>
+            </div>
+            <div class="invoice-buttons">
+                <button id="print-button">Imprimir Factura PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer container">
+        <div class="link">
+            <h3>Contacto</h3>
+            <ul>
+                <li><a href="#">Dirección: Calle Falsa 123</a></li>
+                <li><a href="tel:+123456789">Teléfono: +123 456 789</a></li>
+                <li><a href="mailto:info@minimarket.com">Correo: info@minimarket.com</a></li>
+                <li><a href="#">Horarios: Lun - Vie: 8am - 8pm</a></li>
+            </ul>
+        </div>
+        <div class="link">
+            <h3>Enlaces Rápidos</h3>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const invoiceDetails = document.getElementById("invoice-details");
+            const totalPagar = document.getElementById("total-pagar");
+            const printButton = document.getElementById("print-button");
+
+            // Obtener productos del carrito desde localStorage
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Renderizar la factura detallada
+            let total = 0;
+            cartItems.forEach(item => {
+                total += item.quantity * item.unit_price;
+                invoiceDetails.innerHTML += `<p>${item.title} - ${item.quantity} x $${item.unit_price}</p>`;
+            });
+
+            totalPagar.innerText = total;
+
+            // Funcionalidad del botón de imprimir PDF
+            printButton.addEventListener("click", () => {
+                const {
+                    jsPDF
+                } = window.jspdf;
+                const pdf = new jsPDF();
+                pdf.text("Factura de Compra", 10, 10);
+                let yPosition = 20;
+
+                // Añadir productos al PDF
+                cartItems.forEach(item => {
+                    pdf.text(`${item.title} - ${item.quantity} x $${item.unit_price}`, 10, yPosition);
+                    yPosition += 10;
+                });
+
+                pdf.text(`Total a Pagar: $${total}`, 10, yPosition + 10);
+
+                // Descargar el PDF
+                pdf.save("factura.pdf");
+            });
+        });
+    </script>
+</body>
+
+</html>

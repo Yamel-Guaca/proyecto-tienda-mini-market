@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="./css/media-queries.css">
+    <link rel="stylesheet" href="./css/font/flaticon.css">
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <style>
+        html {
+            --s: 120px;
+            /* control the size */
+            --c1: #1ed5a1;
+            --c2: #24f808;
+            --c3: #a0a7a7;
+            background: conic-gradient(from 150deg at 50% 33%, #0000, var(--c1) .5deg 60deg, #0000 60.5deg) calc(var(--s) / 2) calc(var(--s) / sqrt(2)), conic-gradient(from -30deg at 50% 66%, #0000, var(--c2) .5deg 60deg, #0000 60.5deg);
+            background-size: var(--s) calc(.5 * var(--s) / tan(30deg));
+        }
+        
+        .link-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .link-button:hover {
+            background-color: #33edf7;
+            transform: scale(1.05);
+        }
+        
+        .link-button-secondary {
+            background-color: #e89210;
+        }
+        
+        .link-button-secondary:hover {
+            background-color: #4af69d;
+        }
+        
+        .header-index {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .profile-link {
+            margin-top: 20px;
+        }
+    </style>
+    <title>Tienda Mini Market</title>
+</head>
+
+<body class="home-body">
+    <header class="header-index">
+        <section class="header-icons-container">
+            <div class="icons">
+                <a href="#"><span class="flaticon-001-facebook"></span></a>
+                <a href="#"><span class="flaticon-002-twitter"></span></a>
+                <a href="#"><span class="flaticon-011-instagram"></span></a>
+                <a href="#"><span class="flaticon-010-linkedin"></span></a>
+                <a href="#"><span class="flaticon-008-youtube"></span></a>
+            </div>
+        </section>
+        <nav>
+            <section class="nav-logo-container">
+                <a href="#"><img src="./assets/img/Logo-negro.png" alt="Logotipo Blog"></a>
+            </section>
+            <section class="profile-link">
+                <a href="./login.html" class="link-button">Iniciar Sesión</a>
+                <a href="./signup.html" class="link-button">Registrarse Aquí</a>
+                <a href="about.html" class="link-button link-button-secondary">Acerca de</a>
+            </section>
+        </nav>
+    </header>
+    <main class="home-main"></main>
+    <script src="/js/script.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

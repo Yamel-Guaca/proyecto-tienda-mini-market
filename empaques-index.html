@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empaques</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media-queries.css">
+    <style>
+        html {
+            --s: 120px;
+            --c1: #9e27b9;
+            --c2: #7e4186;
+            --c3: #756a75;
+            background: conic-gradient(from 150deg at 50% 33%, #0000, var(--c1) .5deg 60deg, #0000 60.5deg) calc(var(--s) / 2) calc(var(--s) / sqrt(2)), conic-gradient(from -30deg at 50% 66%, #0000, var(--c2) .5deg 60deg, var(--c3) 60.5deg);
+            background-size: var(--s) calc(.5 * var(--s) / tan(30deg));
+        }
+        
+        .navbar ul li a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar ul li a:hover {
+            background: linear-gradient(45deg, #fad0c4, #ff9a9e);
+            transform: scale(1.1);
+        }
+        
+        .btn-green {
+            background: linear-gradient(45deg, #28a745, #8ddc8d);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-green:hover {
+            background: linear-gradient(45deg, #8ddc8d, #28a745);
+            transform: scale(1.1);
+        }
+        
+        .btn-red {
+            background: linear-gradient(45deg, #dc3545, #ff6f6f);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-red:hover {
+            background: linear-gradient(45deg, #ff6f6f, #dc3545);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo">Empaques</a>
+            <input type="checkbox" id="menu">
+            <label for="menu"><img src="images/menu.png" class="menu-icono" alt=""></label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="homepage.html">Inicio</a></li>
+                    <li><a href="aseo-index.html">Aseo</a></li>
+                    <li><a href="mascotas-index.html">Mascotas</a></li>
+                    <li><a href="mercado-index.html">Mercado</a></li>
+                    <li><a href="panaderia-index.html">Panadería</a></li>
+                    <li><a href="papeleria-index.html">Papelería</a></li>
+                    <button id="logout" class="btn-red">Cerrar Sesión</button>
+                </ul>
+            </nav>
+            <div class="container-icon">
+                <div class="container-cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-cart">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                        />
+                    </svg>
+                    <div class="count-products">
+                        <span id="contador-productos">0</span>
+                    </div>
+                </div>
+                <div class="container-cart-products hidden-cart">
+                    <div class="row-product hidden">
+                        <div class="cart-product">
+                            <div class="info-cart-product">
+                                <span class="cantidad-producto-carrito">1</span>
+                                <p class="titulo-producto-carrito">Producto Ejemplo</p>
+                                <span class="precio-producto-carrito">$0</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-close">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="cart-total hidden">
+                        <h3>Total</h3>
+                        <span class="total-pagar">$0</span>
+                        <button class="btn-green" id="checkout-btn">Ir a Pagar</button>
+                        <button class="btn-red" id="clear-cart">Vaciar Carrito</button>
+                    </div>
+                    <p class="cart-empty">El carrito está vacío</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-items">
+        <div class="item">
+            <figure>
+                <img src="images/blonda.PNG" alt="Blonda">
+            </figure>
+            <div class="info-product">
+                <h2>Blonda Dorada 32 cm x10 und</h2>
+                <p class="price">$30000</p>
+                <button class="btn-add-cart" data-title="Blonda Dorada 32 cm x10 und" data-price="30000">Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img src="images/bolsa_basura.PNG" alt="Bolsa Basura">
+            </figure>
+            <div class="info-product">
+                <h2>Bolsa Para Basura ref 30 x 50 und</h2>
+                <p class="price">$20000</p>
+                <button class="btn-add-cart" data-title="Bolsa Para Basura ref 30 x 50 und" data-price="20000">Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img src="images/bolsa_transparente.PNG" alt="Bolsa Transparente">
+            </figure>
+            <div class="info-product">
+                <h2>Bolsa Transparente Ref 6x11 kilo</h2>
+                <p class="price">$15000</p>
+                <button class="btn-add-cart" data-title="Bolsa Transparente Ref 6x11 kilo" data-price="15000">Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img src="images/caja_torta.PNG" alt="Caja Torta">
+            </figure>
+            <div class="info-product">
+                <h2>Caja Para Torta 30 cm x 10 und</h2>
+                <p class="price">$18000</p>
+                <button class="btn-add-cart" data-title="Caja Para Torta 30 cm x 10 und" data-price="18000">Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img src="images/j-1.PNG" alt="Porta Comidas">
+            </figure>
+            <div class="info-product">
+                <h2>Porta Comidas j-1 x200 und</h2>
+                <p class="price">$53000</p>
+                <button class="btn-add-cart" data-title="Porta Comidas j-1 x200 und" data-price="53000">Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img src="images/l-17.PNG" alt="Bolsa Aluminio">
+            </figure>
+            <div class="info-product">
+                <h2>Bolsa Aluminio Ref L-19 x100 und</h2>
+                <p class="price">$2500</p>
+                <button class="btn-add-cart" data-title="Bolsa Aluminio Ref L-19 x100 und" data-price="2500">Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img src="images/lona.PNG" alt="Lona">
+            </figure>
+            <div class="info-product">
+                <h2>Loma industrial x10 und</h2>
+                <p class="price">$50000</p>
+                <button class="btn-add-cart" data-title="Loma industrial x10 und" data-price="50000">Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img src="images/malla_verde.PNG" alt="Malla Verduras">
+            </figure>
+            <div class="info-product">
+                <h2>Malla Para Verduras x1000 mtr</h2>
+                <p class="price">$100000</p>
+                <button class="btn-add-cart" data-title="Malla Para Verduras x1000 mtr" data-price="100000">Añadir al carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>
