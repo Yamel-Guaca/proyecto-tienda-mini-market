@@ -49,23 +49,27 @@
         .btn-green:hover {
             background: linear-gradient(45deg, #8ddc8d, #28a745);
             transform: scale(1.1);
-        }
+        }        
         
-        .btn-red {
-            background: linear-gradient(45deg, #dc3545, #ff6f6f);
-            color: white;
-            border: none;
-            border-radius: 20px;
+        .btn-back{
+            
+            color: black;
             padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 18px;
+            text-align: center;
             font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s, background-color 0.3s;
+            display: inline-block;
+            margin: 10px;
+            background-color: #e89210;            
         }
-        
-        .btn-red:hover {
-            background: linear-gradient(45deg, #ff6f6f, #dc3545);
-            transform: scale(1.1);
+
+        .btn-back:hover{           
+            transform: scale(1.05);
         }
+
     </style>
 </head>
 
