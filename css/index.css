@@ -97,16 +97,6 @@ nav .profile-link a:hover {
     color: #47cfac;
 }
 
-.home-main {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    height: 80%;
-    background-image: url(../assets/img/Cover.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;    
-}
-
 .home-main section {
     display: grid;
     grid-column: 3;
