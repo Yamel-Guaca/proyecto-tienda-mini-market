@@ -1,0 +1,45 @@
+/* Diseño base para pantallas grandes (PC) */
+section {
+  max-width: 500px;
+  width: 100%;
+}
+
+/* 📱 Estilos para pantallas pequeñas (celular) */
+@media (max-width: 600px) {
+  section {
+    width: 90%;
+    padding: 1em;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  form {
+    padding: 1em;
+    max-width: 100%;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+/* 📲 Estilos para pantallas medianas (tablet) */
+@media (max-width: 1024px) {
+  section {
+    width: 80%;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+
+  form {
+    max-width: 400px;
+  }
+}

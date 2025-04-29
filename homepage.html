@@ -5,62 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./assets/img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/homepage.css">
     <link rel="stylesheet" href="./css/media-queries.css">
     <link rel="stylesheet" href="./css/font/flaticon.css">
     <style>
-        html {
-            --s: 120px;
-            /* control the size */
-            --c1: #1ed5a1;
-            --c2: #24f808;
-            --c3: #a0a7a7;
-            background: conic-gradient(from 150deg at 50% 33%, #0000, var(--c1) .5deg 60deg, #0000 60.5deg) calc(var(--s) / 2) calc(var(--s) / sqrt(2)), conic-gradient(from -30deg at 50% 66%, #0000, var(--c2) .5deg 60deg, var(--c3) 60.5deg);
-            background-size: var(--s) calc(.5 * var(--s) / tan(30deg));
-        }
         
-        .link-button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 18px;
-            text-align: center;
-            font-weight: bold;
-            transition: transform 0.3s, background-color 0.3s;
-            display: inline-block;
-            margin: 10px;
-        }
-        
-        .link-button:hover {
-            background-color: #33edf7;
-            transform: scale(1.05);
-        }
-        
-        .link-button-secondary {
-            background-color: #e89210;
-        }
-
-        .btn-back{
-            
-            color: black;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 18px;
-            text-align: center;
-            font-weight: bold;
-            transition: transform 0.3s, background-color 0.3s;
-            display: inline-block;
-            margin: 10px;
-            background-color: #e89210;            
-        }
-
-        .btn-back:hover{
-            background-color: #33edf7;
-            transform: scale(1.05);
-        }
     </style>
 
     <title>Tienda Mini Market</title>
@@ -78,21 +27,30 @@
 
             </div>
         </section>
+
         <nav>
             <section class="nav-logo-container">
                 <a href="#"><img src="./assets/img/Logo-negro.png" alt="Logotipo Blog"></a>
             </section>
+
             <section class="profile-link">
-                <a href="about.html" class="link-button link-button-secondary">Acerca de Nosotros</a>
-                <button class="btn-back" onclick="window.location.href='index.html'">Cerrar Sesión</button>
+                <button class="btn-back">
+                    <a href="about.html">Acerca de Nosotros</a>
+                </button>   
+
+                <button class="btn-back">
+                    <a href="index.html">Cerrar Sesión</a>
+                </button>
             </section>
         </nav>
+
     </header>
-    <main class="home-main">
-        <section>
-            <p class="home-main-text">
-                Haz clic y llena tu carrito
-            </p>
+    <main class="home-main">   
+             
+        <section >
+            
+            <p class="home-main-text">Haz clic y llena tu carrito</p>
+
             <button class="home-main-boton">
                 <a href="./mercado-index.html">Mercado</a>
             </button>
@@ -115,13 +73,9 @@
 
             <button class="home-main-boton">
                 <a href="empaques-index.html">Empaques</a>
-            </button>
+            </button>            
 
         </section>
-    </main>
-
-    <script src="./js/index.js"></script>
-
+    </main>   
 </body>
-
 </html>

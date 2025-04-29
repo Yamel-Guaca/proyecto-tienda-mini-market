@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto mono', 'monospace';
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.home-body {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.header-index {
+  width: 100%;
+  height: 120px;
+  display: grid;
+}
+
+header .header-icons-container {
+  width: 100%;
+  height: 50px;
+  display: grid;
+  background-color: #3dae86;
+}
+
+header .header-icons-container .icons {
+  width: 300px;
+  height: auto;
+  display: flex;
+  justify-items: end;
+  align-items: center;
+  justify-content: space-between;
+  justify-self: end;
+  margin-right: 50px;
+}
+
+header .icons span {
+  color: #ffffff;
+}
+
+header .icons span:hover {
+  color: #080808;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: 90px;
+}
+
+nav .nav-logo-container {
+  margin-left: 50px;
+}
+
+nav .nav-logo-container img {
+  width: 220px;
+  margin-top: 10px;
+}
+
+nav .profile-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 5 px;
+  margin: 0 30px;
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+nav .profile-link a {
+  color: #000000;
+  justify-content: space-between;
+  height: 40px;
+}
+
+nav .profile-link a:hover {
+  color: #47cfac;
+}
+
+.home-main section {
+  display: grid;
+  grid-column: 3;
+  justify-items: end;
+  height: 350px;
+  margin-top: 80px;
+}
+
+.home-main-text {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 10px;
+  color: white;
+  /* Cambia el color del texto a blanco */
+  text-align: center;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  /* Simula el borde negro alrededor del texto */
+}
+
+.home-main-text:hover {
+  color: #3beebe;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  /* Mantén el borde negro en el estado hover */
+}
+
+.home-main-boton {
+  width: 110px;
+  height: 50px;
+  background-color: #12ffd8;
+  display: grid;
+  align-items: center;
+  margin: 5px 0;
+  border-radius: 25px
+}
+
+.home-main-boton:hover {
+  border-color: #5ddec7;
+  background-color: #33b5e8;
+}
+
+.home-main-boton a {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+html {
+  --s: 120px;
+  /* control the size */
+  --c1: #1ed5a1;
+  --c2: #24f808;
+  --c3: #a0a7a7;
+  background: conic-gradient(from 150deg at 50% 33%, #0000, var(--c1) .5deg 60deg, #0000 60.5deg) calc(var(--s) / 2) calc(var(--s) / sqrt(2)), conic-gradient(from -30deg at 50% 66%, #0000, var(--c2) .5deg 60deg, var(--c3) 60.5deg);
+  background-size: var(--s) calc(.5 * var(--s) / tan(30deg));
+}
+
+.link-button-secondary {
+  background-color: #e89210;
+}
+
+.btn-back{
+  
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  transition: transform 0.3s, background-color 0.3s;
+  display: inline-block;
+  margin: 10px;
+  background-color: #e89210;            
+}
+
+.btn-back:hover{
+  background-color: #33edf7;
+  transform: scale(1.05);
+}
+
+.home-main-boton {
+  display: block; /* Asegura que el botón ocupe el espacio adecuado */
+  margin: 0 auto; /* Esto lo centra horizontalmente */
+}
+
+.home-main-text {
+  display: block; /* Asegura que el botón ocupe el espacio adecuado */
+  margin: 0 auto; /* Esto lo centra horizontalmente */
+  margin-bottom: 30px; /* Espacio entre el texto y los botones */
+}
+
+.left-images, .right-images {
+  display: flex;
+  flex-direction: column; /* Organiza las imágenes en columna */
+  gap: 10px; /* Espacio entre imágenes */
+}
+
+.left-images {
+  
+ 
+
+  display: flex;
+    justify-content: flex-start; /* Alinea los elementos a la izquierda */
+  margin: 0 auto; /* Esto lo centra horizontalmente */
+}
+
