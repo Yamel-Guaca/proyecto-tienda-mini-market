@@ -1,0 +1,116 @@
+/* --------------------------------------- */
+/*     Media Queries para dispositivos     */
+/* --------------------------------------- */
+
+/* === Para dispositivos móviles (ancho máximo: 480px) === */
+@media only screen and (max-width: 480px) {
+  /* Ajustes generales del header */
+  header.header-index {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+  }
+
+  /* Sección de íconos: centramos y ajustamos márgenes */
+  section.header-icons-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+  }
+
+  /* Íconos: reducimos tamaño y espaciado */
+  .icons a span {
+      font-size: 20px;
+      margin: 0 5px;
+  }
+
+  /* Navegación: disposición vertical y centrada */
+  nav {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  /* Logo: se centra y se ajusta el tamaño */
+  section.nav-logo-container {
+      margin-bottom: 10px;
+  }
+  section.nav-logo-container img {
+      max-width: 80%;
+      height: auto;
+  }
+
+  /* Enlaces de perfil: se muestran en columna con buen espaciado */
+  section.profile-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+  }
+  .link-button {
+      padding: 8px 16px;
+      font-size: 14px;
+      width: 80%;
+      text-align: center;
+  }
+}
+
+/* === Para tablets (ancho entre 481px y 768px) === */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  /* Ajustes generales del header */
+  header.header-index {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+  }
+
+  /* Sección de íconos: centramos y ajustamos espaciado */
+  section.header-icons-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+  }
+
+  /* Íconos: aumentamos ligeramente el tamaño */
+  .icons a span {
+      font-size: 24px;
+      margin: 0 8px;
+  }
+
+  /* Navegación: disposición vertical y centrada */
+  nav {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  /* Logo: se ajusta el tamaño para tablets */
+  section.nav-logo-container {
+      margin-bottom: 10px;
+  }
+  section.nav-logo-container img {
+      width: 150px;
+      height: auto;
+  }
+
+  /* Enlaces de perfil: organización en fila con flex-wrap en caso de espacio limitado */
+  section.profile-link {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+  }
+  .link-button {
+      padding: 10px 20px;
+      font-size: 16px;
+  }
+}
