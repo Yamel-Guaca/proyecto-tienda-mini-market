@@ -1,140 +1,66 @@
-// Selección de elementos del DOM
-const btnCart = document.querySelector('.container-cart-icon');
-const containerCartProducts = document.querySelector('.container-cart-products');
-const productsList = document.querySelector('.container-items');
-const rowProduct = document.querySelector('.row-product');
-const valorTotal = document.querySelector('.total-pagar');
-const countProducts = document.querySelector('#contador-productos');
-const cartEmpty = document.querySelector('.cart-empty');
-const cartTotal = document.querySelector('.cart-total');
+// Función para quitar puntos y comas y convertir a entero
+function parseNumber(value) {
+  var num = value.replace(/\./g, '').replace(/,/g, '');
+  return parseInt(num) || 0;
+}
 
-// Estado del carrito en localStorage
-let allProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+// Función para formatear números con separador de miles (punto)
+function formatNumber(num) {
+  return num.toLocaleString('es-CO');
+}
 
-// Toggle para mostrar/ocultar el carrito
-btnCart.addEventListener('click', () => {
-    containerCartProducts.classList.toggle('hidden-cart');
-});
+// Actualiza la suma y el valor a consignar según los valores ingresados
+function updateTotals(){
+  var totalEfectivo = parseNumber(document.getElementById('total_efectivo').value);
+  var niqui = parseNumber(document.getElementById('niqui').value);
+  var daviplata = parseNumber(document.getElementById('daviplata').value);
+  var yamel = parseNumber(document.getElementById('yamel').value);
+  var puntoRed = parseNumber(document.getElementById('punto_red').value);
+  var plataforma = parseNumber(document.getElementById('plataforma').value);
+  var corresponsal2 = parseNumber(document.getElementById('corresponsal2').value);
+  var corresponsal3 = parseNumber(document.getElementById('corresponsal3').value);
+  var totalSistema = parseNumber(document.getElementById('total_sistema').value);
+  
+  var total = totalEfectivo + niqui + daviplata + yamel + puntoRed + plataforma + corresponsal2 + corresponsal3 + totalSistema;
+  document.getElementById('total').value = formatNumber(total);
+  
+  var recaudo = 10000000; // Valor fijo definido
+  document.getElementById('recaudo').value = formatNumber(recaudo);
+  var consignar = recaudo - total;
+  document.getElementById('consignar').value = formatNumber(consignar);
+}
 
-// Añadir productos al carrito
-productsList.addEventListener('click', e => {
-    if (e.target.classList.contains('btn-add-cart')) {
-        const product = e.target.parentElement;
+// Agregar eventListeners para recalcular en cada cambio
+document.getElementById('total_efectivo').addEventListener('input', updateTotals);
+document.getElementById('niqui').addEventListener('input', updateTotals);
+document.getElementById('daviplata').addEventListener('input', updateTotals);
+document.getElementById('yamel').addEventListener('input', updateTotals);
+document.getElementById('punto_red').addEventListener('input', updateTotals);
+document.getElementById('plataforma').addEventListener('input', updateTotals);
+document.getElementById('corresponsal2').addEventListener('input', updateTotals);
+document.getElementById('corresponsal3').addEventListener('input', updateTotals);
+document.getElementById('total_sistema').addEventListener('input', updateTotals);
 
-        const infoProduct = {
-            quantity: 1,
-            title: product.querySelector('h2').textContent,
-            price: parseInt(product.querySelector('p').textContent.replace(/\D/g, '')),
-        };
+// Establece la fecha actual en el campo "fecha"
+document.getElementById('fecha').value = new Date().toLocaleString('es-CO');
 
-        const exists = allProducts.some(product => product.title === infoProduct.title);
+// Funciones para el manejo de transacciones acumuladas usando localStorage
+function getTotalTransacciones(){
+  var total = localStorage.getItem('totalTransacciones');
+  return total ? parseInt(total) : 0;
+}
 
-        if (exists) {
-            const products = allProducts.map(product => {
-                if (product.title === infoProduct.title) {
-                    product.quantity++;
-                    return product;
-                } else {
-                    return product;
-                }
-            });
-            allProducts = [...products];
-        } else {
-            allProducts = [...allProducts, infoProduct];
-        }
+function setTotalTransacciones(value){
+  localStorage.setItem('totalTransacciones', value);
+  document.getElementById('total_transacciones').value = formatNumber(value);
+}
 
-        // Guardar productos en localStorage
-        localStorage.setItem('cartProducts', JSON.stringify(allProducts));
-
-        showHTML();
-    }
-});
-
-// Eliminar productos del carrito
-rowProduct.addEventListener('click', e => {
-    if (e.target.classList.contains('icon-close')) {
-        const product = e.target.parentElement;
-        const title = product.querySelector('p').textContent;
-
-        allProducts = allProducts.filter(product => product.title !== title);
-
-        // Guardar productos en localStorage
-        localStorage.setItem('cartProducts', JSON.stringify(allProducts));
-
-        showHTML();
-    }
-});
-
-// Función para mostrar el carrito en el HTML
-const showHTML = () => {
-    if (!allProducts.length) {
-        cartEmpty.classList.remove('hidden');
-        rowProduct.classList.add('hidden');
-        cartTotal.classList.add('hidden');
-    } else {
-        cartEmpty.classList.add('hidden');
-        rowProduct.classList.remove('hidden');
-        cartTotal.classList.remove('hidden');
-    }
-
-    // Limpiar HTML
-    rowProduct.innerHTML = '';
-
-    let total = 0;
-    let totalOfProducts = 0;
-
-    allProducts.forEach(product => {
-        const containerProduct = document.createElement('div');
-        containerProduct.classList.add('cart-product');
-
-        containerProduct.innerHTML = `
-            <div class="info-cart-product">
-                <span class="cantidad-producto-carrito">${product.quantity}</span>
-                <p class="titulo-producto-carrito">${product.title}</p>
-                <span class="precio-producto-carrito">$${product.price}</span>
-            </div>
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="icon-close"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                />
-            </svg>
-        `;
-
-        rowProduct.append(containerProduct);
-
-        total += product.quantity * product.price;
-        totalOfProducts += product.quantity;
-    });
-
-    valorTotal.innerText = `$${total}`;
-    countProducts.innerText = totalOfProducts;
-};
-
-// Inicializar la vista del carrito cuando la página se carga
-document.addEventListener('DOMContentLoaded', showHTML);
-
-// Inicializar MercadoPago
-const mercadopago = new MercadoPago("TEST-b658ce4c-1b5c-4f35-bcb5-10d1b1090315", {
-    locale: "es-CO"
-});
-
-// Acción del botón de pago
-document.addEventListener('click', (e) => {
-    if (e.target && e.target.id === 'checkout-btn') {
-        // Lógica para redirigir a la página de pago de MercadoPago
-        mercadopago.checkout({
-            preference: {
-                id: 'your_preference_id'
-            }
-        });
-    }
+// Al hacer clic en "Agregar" se suma el valor ingresado en Transacciones al acumulado
+document.getElementById('addTransaccion').addEventListener('click', function(){
+  var transaccionInput = document.getElementById('transacciones');
+  var valor = parseNumber(transaccionInput.value);
+  var totalActual = getTotalTransacciones();
+  var nuevoTotal = totalActual + valor;
+  setTotalTransacciones(nuevoTotal);
+  transaccionInput.value = "";
 });

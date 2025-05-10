@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Corresponsal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="main-container">
+    <!-- El formulario agrupa las operaciones y el contenedor de transacciones en dos columnas -->
+    <form id="transactionForm" action="php/conexion.php" method="post">
+      
+      <!-- Columna de Operaciones -->
+      <div class="column operations">        
+        <div class="form-row">
+          <label for="nombre_cajero">Nombre Cajero:</label>
+          <input type="text" id="nombre_cajero" name="nombre_cajero" required>
+        </div>
+        <div class="form-row">
+          <label for="total_efectivo">Total Efectivo:</label>
+          <input type="text" id="total_efectivo" name="total_efectivo" placeholder="0">
+          
+          <label for="niqui">Niqui:</label>
+          <input type="text" id="niqui" name="niqui" placeholder="0">
+          
+          <label for="daviplata">Daviplata:</label>
+          <input type="text" id="daviplata" name="daviplata" placeholder="0">
+          
+          <label for="yamel">Yamel:</label>
+          <input type="text" id="yamel" name="yamel" placeholder="0">
+        </div>
+        <div class="form-row">
+          <label for="punto_red">Punto Red:</label>
+          <input type="text" id="punto_red" name="punto_red" placeholder="0">
+          
+          <label for="plataforma">Plataforma:</label>
+          <input type="text" id="plataforma" name="plataforma" placeholder="0">
+          
+          <label for="corresponsal2">Corresponsal 2:</label>
+          <input type="text" id="corresponsal2" name="corresponsal2" placeholder="0">
+          
+          <label for="corresponsal3">Corresponsal 3:</label>
+          <input type="text" id="corresponsal3" name="corresponsal3" placeholder="0">
+        </div>
+        <div class="form-row">
+          <label for="total_sistema">Total Sistema:</label>
+          <input type="text" id="total_sistema" name="total_sistema" placeholder="0">
+        </div>
+        <div class="form-row">
+          <label for="total">Total:</label>
+          <input type="text" id="total" name="total" readonly>
+          
+          <label for="recaudo">Recaudo:</label>
+          <!-- Este campo siempre muestra 10.000.000 -->
+          <input type="text" id="recaudo" name="recaudo" value="10.000.000" readonly>
+          
+          <label for="consignar">Consignar:</label>
+          <input type="text" id="consignar" name="consignar" readonly>
+        </div>
+        <div class="form-row">
+          <label for="fecha">Fecha:</label>
+          <!-- Se llenará automáticamente la fecha actual -->
+          <input type="text" id="fecha" name="fecha" readonly>
+        </div>
+      </div>
+      
+      <!-- Columna de Transacciones -->
+      <div class="column transacciones">
+        <h3>Total Transacciones</h3>
+        <div class="form-row">
+          <label for="transacciones">Transacciones:</label>
+          <input type="text" id="transacciones" name="transacciones" placeholder="0">
+          <button id="addTransaccion" type="button">Agregar</button>
+        </div>
+        <div class="form-row">
+          <label for="total_transacciones">Total Transacciones:</label>
+          <input type="text" id="total_transacciones" name="total_transacciones" value="0" readonly>
+        </div>
+        <li><a href="homepage.html">Inicio</a></li> 
+        <li><a href="corresponsal-danubio.html">Corresponsal</a></li>                   
+                    <li><a href="empaques-index.html">Empaques</a></li>                    
+                    <button class="btn-back" onclick="window.location.href='index.html'">Cerrar Sesión</button>
+                
+      </div>
+      
+      <!-- Botón de envío -->
+      <div class="form-row">
+        <input type="submit" value="Registrar">
+      </div>
+      
+    </form>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>

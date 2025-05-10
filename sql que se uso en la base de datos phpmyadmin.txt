@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS `transacciones` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `fecha` DATETIME NOT NULL,
+  `total_efectivo` DECIMAL(15,2) DEFAULT 0,
+  `nequi` DECIMAL(15,2) DEFAULT 0,
+  `daviplata` DECIMAL(15,2) DEFAULT 0,
+  `yamel` DECIMAL(15,2) DEFAULT 0,
+  `punto_red` DECIMAL(15,2) DEFAULT 0,
+  `plataforma` DECIMAL(15,2) DEFAULT 0,
+  `corresponsal2` DECIMAL(15,2) DEFAULT 0,
+  `corresponsal3` DECIMAL(15,2) DEFAULT 0,
+  `total_sistema` DECIMAL(15,2) DEFAULT 0,
+  `total` DECIMAL(15,2) DEFAULT 0,
+  `recaudo` DECIMAL(15,2) DEFAULT 10000000,
+  `consignar` DECIMAL(15,2) DEFAULT 0,
+  `transaccion1` DECIMAL(15,2) DEFAULT 0,
+  `transaccion2` DECIMAL(15,2) DEFAULT 0,
+  `total_transacciones` DECIMAL(15,2) DEFAULT 0
+)
