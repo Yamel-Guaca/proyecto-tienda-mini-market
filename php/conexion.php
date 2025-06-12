@@ -2,10 +2,10 @@
 // Archivo: php/conexion.php
 
 // Datos de conexión (verifica que sean los correctos para tu entorno)
-$host = "localhost";
-$user = "root";
-$password = "Yame1@";
-$dbname = "datos-corresponsal";
+$host = "srv739.hstgr.io";
+$user = "u226219988_basedatos";
+$password = "Yamel1@@";
+$dbname = "u226219988_bdyamel";
 
 
 // Crear la conexión
