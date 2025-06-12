@@ -4,8 +4,9 @@
 // Datos de conexión (verifica que sean los correctos para tu entorno)
 $host = "localhost";
 $user = "root";
-$password = "";
+$password = "Yame1@";
 $dbname = "datos-corresponsal";
+
 
 // Crear la conexión
 $conn = new mysqli($host, $user, $password, $dbname);
